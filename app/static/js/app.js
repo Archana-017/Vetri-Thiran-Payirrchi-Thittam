@@ -1,0 +1,1 @@
+async function api(url, method='GET', body=null){const opts={method,headers:{}};if(body instanceof FormData)opts.body=body;else if(body){opts.headers['Content-Type']='application/json';opts.body=JSON.stringify(body);}const r=await fetch(url,opts);let data={};try{data=await r.json()}catch{};return r.ok?data:{detail:data.detail||`Request failed (${r.status})`};}
